@@ -1,0 +1,8 @@
+{
+  "PORT": 5001,
+  "DB_PORT": 5432,
+  "DB_DATABASE": "shopping-site",
+  "DB_HOST": "localhost",
+  "DB_PASSWORD": "cviscx123123",
+  "DB_USER": "postgres"
+}
