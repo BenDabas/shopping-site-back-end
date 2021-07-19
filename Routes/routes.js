@@ -3,6 +3,8 @@ var cors = require('cors');
 
 const productRoutes = require('./Api/Products/products');
 
+const transactionRoutes = require('./Api/transactions/transactions');
+
 class Router {
   constructor() {}
 
@@ -10,6 +12,7 @@ class Router {
     const router = express.Router();
     // router.use(cors());
     router.use('/products', productRoutes);
+    router.use('/transactions', transactionRoutes);
     return router;
   }
 }

@@ -105,12 +105,69 @@ class Products extends Controller {
       res.status(400).json({ code: error.code, message: error.message });
     }
   }
+  async getTopFiveSells(req, res) {
+    try {
+      const returningProducts = await this.productService.GetTopFiveSells();
+      if (!returningProducts) {
+        console.error(`Api/Product/products.js getToFiveSells failed!`);
+        res.setHeader('Access-Control-Allow-Origin', '*').status(404).json({
+          message: `getToFiveSells failed!`,
+        });
+      } else {
+        res
+          .status(200)
+          .setHeader('Access-Control-Allow-Origin', '*')
+          .json(returningProducts);
+      }
+    } catch (error) {
+      console.error(
+        `Api/Product/products.js getToFiveSells: failed!: ${error.message}`
+      );
+      res
+        .status(400)
+        .setHeader('Access-Control-Allow-Origin', '*')
+        .json({ code: error.code, message: error.message });
+    }
+  }
+  async getTopFiveUniqueSells(req, res) {
+    try {
+      const returningProducts =
+        await this.productService.GetTopFiveUniqueSells();
+      if (!returningProducts) {
+        console.error(`Api/Product/products.js getTopFiveUniqueSells failed!`);
+        res.setHeader('Access-Control-Allow-Origin', '*').status(404).json({
+          message: `getTopFiveUniqueSells failed!`,
+        });
+      } else {
+        res
+          .status(200)
+          .setHeader('Access-Control-Allow-Origin', '*')
+          .json(returningProducts);
+      }
+    } catch (error) {
+      console.error(
+        `Api/Product/products.js getTopFiveUniqueSells: failed!: ${error.message}`
+      );
+      res
+        .status(400)
+        .setHeader('Access-Control-Allow-Origin', '*')
+        .json({ code: error.code, message: error.message });
+    }
+  }
 
   setRoutes() {
     try {
       this.productRouter.post('/create', this.createProduct.bind(this));
 
       this.productRouter.get('/get-all', this.getAllProducts.bind(this));
+      this.productRouter.get(
+        '/get-top-five-sells',
+        this.getTopFiveSells.bind(this)
+      );
+      this.productRouter.get(
+        '/get-top-five-unique-sells',
+        this.getTopFiveUniqueSells.bind(this)
+      );
 
       this.productRouter.patch('/update', this.updateProduct.bind(this));
 

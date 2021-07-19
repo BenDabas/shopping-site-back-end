@@ -85,6 +85,51 @@ class ProductService extends Service {
       return false;
     }
   }
+
+  async GetTopFiveSells() {
+    try {
+      let topFiveProducts;
+      const res = await this.pool.query(
+        'SELECT * FROM products ORDER BY sold_amount desc LIMIT 5'
+      );
+      if (res.rows) {
+        topFiveProducts = res.rows.map(convertObj);
+
+        console.info(
+          `services/productService.js GetTopFiveSells successfully!`
+        );
+        return topFiveProducts;
+      }
+      return false;
+    } catch (error) {
+      console.info(
+        `services/productService.js GetTopFiveSells failed! ${error.message}`
+      );
+      return false;
+    }
+  }
+  async GetTopFiveUniqueSells() {
+    try {
+      let topFiveUniqueProducts;
+      const res = await this.pool.query(
+        'SELECT * FROM products ORDER BY unique_sold desc LIMIT 5'
+      );
+      if (res.rows) {
+        topFiveUniqueProducts = res.rows.map(convertObj);
+
+        console.info(
+          `services/productService.js GetTopFiveUniqueSells successfully!`
+        );
+        return topFiveUniqueProducts;
+      }
+      return false;
+    } catch (error) {
+      console.info(
+        `services/productService.js GetTopFiveUniqueSells failed! ${error.message}`
+      );
+      return false;
+    }
+  }
 }
 
 module.exports = ProductService;
