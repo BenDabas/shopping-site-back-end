@@ -97,10 +97,6 @@ class Transactions extends Controller {
         '/get-five-days-transactions',
         this.getPastFiveDaysTransactions.bind(this)
       );
-
-      //   this.productRouter.patch('/update', this.updateProduct.bind(this));
-
-      //   this.productRouter.delete('/delete/:id', this.deleteProduct.bind(this));
     } catch (error) {
       console.log('Error', error.message);
     }

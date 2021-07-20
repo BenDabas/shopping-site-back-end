@@ -58,9 +58,6 @@ class TransactionService extends Service {
       );
       if (res.rows) {
         transactions = res.rows.map(convertObj);
-        // transactions.forEach((transaction) => {
-        //   transaction.createdAt.toString().slice(0, 10);
-        // });
         console.info(
           `services/transactionService.js GetPastFiveDaysTransactionsSum successfully!`
         );

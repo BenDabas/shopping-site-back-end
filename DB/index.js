@@ -38,7 +38,6 @@ class Database {
       console.log('DB connect: Connected to DB');
 
       this.client = await this.pool.connect();
-      // console.log(this.client);
       this.dbTables.setPool(this.pool);
       await this.dbTables.createTables();
     } catch (error) {
