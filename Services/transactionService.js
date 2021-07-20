@@ -52,17 +52,19 @@ class TransactionService extends Service {
   }
   async GetPastFiveDaysTransactions() {
     try {
-      let transactionsSum;
+      let transactions;
       const res = await this.pool.query(
-        `SELECT price, created_at::text FROM transactions WHERE created_at >= current_date - interval '5' day`
+        `SELECT id,price, created_at::timestamp(0) without time zone FROM transactions WHERE created_at >= current_date - interval '5' day`
       );
       if (res.rows) {
-        transactionsSum = res.rows.map(convertObj);
-
+        transactions = res.rows.map(convertObj);
+        // transactions.forEach((transaction) => {
+        //   transaction.createdAt.toString().slice(0, 10);
+        // });
         console.info(
           `services/transactionService.js GetPastFiveDaysTransactionsSum successfully!`
         );
-        return transactionsSum;
+        return transactions;
       }
       return false;
     } catch (error) {

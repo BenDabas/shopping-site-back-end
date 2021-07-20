@@ -44,8 +44,8 @@ class DBTables {
       await this.pool.query(`CREATE TABLE IF NOT EXISTS transactions(
         id SERIAL PRIMARY KEY,
         price REAL,
-        created_at TIMESTAMP NOT NULL DEFAULT NOW()::TIMESTAMP,
-        last_updated TIMESTAMP NOT NULL DEFAULT NOW()::TIMESTAMP
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()::TIMESTAMP(0) WITHOUT TIME ZONE,
+        last_updated TIMESTAMP NOT NULL DEFAULT NOW()::TIMESTAMP(0) WITHOUT TIME ZONE
       )`);
       console.log(
         'DB/createTables/createTransactionTable Create products table success!'
