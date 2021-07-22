@@ -1,0 +1,8 @@
+{
+  "PORT": 5001,
+  "DB_PORT": 5432,
+  "DB_DATABASE": "postgres",
+  "DB_HOST": "shopping-site-prod.csruv3yxndvr.us-east-2.rds.amazonaws.com",
+  "DB_PASSWORD": "postgres",
+  "DB_USER": "postgres"
+}

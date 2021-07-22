@@ -11,6 +11,15 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/index.js",
       "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Server - Production",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/index.js",
+      "env": { "NODE_ENV": "production" },
+      "outputCapture": "std"
     }
   ]
 }
